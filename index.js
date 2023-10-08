@@ -30,13 +30,15 @@ async function run() {
 
     const serviceCollection = client.db('toyMarketplace').collection('services');
     const bookingCollection = client.db('toyMarketplace').collection('bookings');
-
     app.get('/services', async (req, res) => {
       const cursor = serviceCollection.find();
       const result = await cursor.toArray();
       res.send(result)
     })
-
+// app.get('/total/services', async(req, res) =>{
+//   const result = await serviceCollection.estimatedDocumentCount();
+//   res.send({totalServices: result})
+// })
     app.get('/addToy/:id', async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) }
